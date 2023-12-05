@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./Main_Components/Home";
 import Navigation_Bar from "./Navigation_Bar";
 import Footer from "./Footer";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 }

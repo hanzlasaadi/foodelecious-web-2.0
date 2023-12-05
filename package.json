@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "food_Delicious",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
     "react-magnifier": "^3.0.4",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.6.2",
