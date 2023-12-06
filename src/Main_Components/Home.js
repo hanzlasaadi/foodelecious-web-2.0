@@ -6,9 +6,9 @@ import Blog from '../Sub_Components/Blog'
 const Home = () => {
   return (
     <div>
-      {/* <Landing_Image/>
-      <Categories/>
-      <Blog/> */}
+      {/* <Landing_Image/> */}
+      {/* <Categories/> */}
+      {/* <Blog/> */}
     </div>
   )
 }
