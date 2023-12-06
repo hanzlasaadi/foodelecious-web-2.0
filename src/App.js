@@ -1,5 +1,6 @@
 // import logo from "./logo.svg";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import Home from "./Main_Components/Home";
 import Navigation_Bar from "./Navigation_Bar";
