@@ -28,7 +28,8 @@ const Footer = () => {
             <p className="text-center font-sans leading-loose mt-4">
               <h6 className="lg:ml-[33px] ">SERVICE</h6>
               <span className="lg:ml-[15px]">Home</span> <br />
-              <span className="lg:ml-[15px]">Menu</span><br />
+              <span className="lg:ml-[15px]">Menu</span>
+              <br />
               <span className="lg:ml-[4px]">Blog</span> <br />
               <span className="lg:ml-[29px]">About Us </span>
               <br />
@@ -42,8 +43,8 @@ const Footer = () => {
                 <h5>
                   <IoLocationOutline />
                 </h5>
-                <span className="ml-2" style={{fontSize:12}}>80 EAST STREET BEDMINSTER,BS34EY
-                  
+                <span className="ml-2" style={{ fontSize: 12 }}>
+                  80 EAST STREET BEDMINSTER,BS34EY
                 </span>
               </p>
 
@@ -59,13 +60,16 @@ const Footer = () => {
             <p className="text-center font-sans  mt-5">
               <h5 className="lg:ml-[77px]">GET NEW & OFFER</h5>
               <p className="lg:ml-[78px] ">
-                <InputGroup className="mt-3" style={{width:290}}>
+                <InputGroup className="mt-3" style={{ width: 290 }}>
                   <Form.Control
                     placeholder="Email"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
                   />
-                  <Button variant="outline-secondary text-white" id="button-addon2">
+                  <Button
+                    variant="outline-secondary text-white"
+                    id="button-addon2"
+                  >
                     Subscribe
                   </Button>
                 </InputGroup>

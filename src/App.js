@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CheckoutPage from "./Main_Components/CheckoutPage";
 import SelectOptionPage from "./Sub_Components/SelectOptionPage";
+import ProductCategory from "./Sub_Components/Page2/ProductCategory";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         {/* <CheckoutPage /> */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/productCategories" element={<ProductCategory/>} />
         </Routes>
       </BrowserRouter>
       <Footer/>
