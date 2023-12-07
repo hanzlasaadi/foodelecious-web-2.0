@@ -1,5 +1,6 @@
 import React from "react";
-import { data } from "../data/data.js";
+import { data } from "../../data/data.js";
+import { Link, Outlet } from "react-router-dom";
 
 const Categories = () => {
   const project = data;
@@ -10,19 +11,24 @@ const Categories = () => {
         {/* Gird Item */}
         {project.map((item, index) => (
           <div key={index} class="d-flex flex-col justify-center items-center">
+            <Link
+                to={`/productCategories`}
+                class="text-black no-underline"
+              >
             <img
               src={item.image}
               alt=""
-              class="w-[200px] h-[200px] border-amber-500 rounded-full border-2"
+              class="w-[180px] h-[180px] border-orange-500 rounded-full border-2"
             />
 
-            <h4 class="text-center font-semibold pt-2 uppercase">
+            <h4 class="text-center font-semibold pt-2 uppercase hover:text-black no-underline">
               {item.name}
             </h4>
-            <p class="text-slate-600 text-center font-semibold">{item.desc}</p>
+            <p class="text-slate-600 text-center font-semibold no-underline">{item.desc}</p></Link>
           </div>
         ))}
       </div>
+      <Outlet/>
     </div>
   );
 };
