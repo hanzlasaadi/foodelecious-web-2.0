@@ -7,22 +7,23 @@ import Navigation_Bar from "./Navigation_Bar";
 import Footer from "./Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CheckoutPage from "./Main_Components/CheckoutPage";
-import SelectOptionPage from "./Sub_Components/SelectOptionPage";
+
 import ProductCategory from "./Sub_Components/Page2/ProductCategory";
+import SelectOptionPage from "./Sub_Components/Page3/SelectOptionPage";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Navigation_Bar />
-        <SelectOptionPage />
+        {/* <Navigation_Bar /> */}
+      <SelectOptionPage />
         {/* <CheckoutPage /> */}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/productCategories" element={<ProductCategory/>} />
+          {/* <Route path="/" element={<Home />} /> */}
+          {/* <Route path="/productCategories" element={<ProductCategory/>} /> */}
         </Routes>
       </BrowserRouter>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 }
