@@ -11,24 +11,24 @@ const Categories = () => {
         {/* Gird Item */}
         {project.map((item, index) => (
           <div key={index} class="d-flex flex-col justify-center items-center">
-            <Link
-                to={`/productCategories`}
-                class="text-black no-underline"
-              >
-            <img
-              src={item.image}
-              alt=""
-              class="w-[180px] h-[180px] border-orange-500 rounded-full border-2"
-            />
+            <Link to={`/productCategories`} class="text-black no-underline">
+              <img
+                src={item.image}
+                alt=""
+                class="w-[180px] h-[180px] border-orange-500 rounded-full border-2"
+              />
 
-            <h4 class="text-center font-semibold pt-2 uppercase hover:text-black no-underline">
-              {item.name}
-            </h4>
-            <p class="text-slate-600 text-center font-semibold no-underline">{item.desc}</p></Link>
+              <h4 class="text-center font-semibold pt-2 uppercase hover:text-black no-underline">
+                {item.name}
+              </h4>
+              <p class="text-slate-600 text-center font-semibold no-underline">
+                {item.desc}
+              </p>
+            </Link>
           </div>
         ))}
       </div>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };
