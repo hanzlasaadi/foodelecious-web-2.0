@@ -2,14 +2,13 @@ import React from "react";
 import { data } from "../../data/data.js";
 import { Link, Outlet } from "react-router-dom";
 
-const Categories = () => {
-  const project = data;
+const Categories = ({ categories }) => {
   return (
     <div>
       {/* container for projects */}
       <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 m-4">
         {/* Gird Item */}
-        {project.map((item, index) => (
+        {categories?.map((item, index) => (
           <div key={index} class="d-flex flex-col justify-center items-center">
             <Link to={`/productCategories`} class="text-black no-underline">
               <img
