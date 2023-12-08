@@ -15,9 +15,11 @@ import axios from "axios";
 import { apiUrl } from "./data/env";
 import React from "react";
 import { data } from "./data/data";
+import { data as data2 } from "./data/data2";
 
 function App() {
   const [categories, setCategories] = React.useState(data);
+  const [subCategories, setSubCategories] = React.useState(data2);
 
   React.useEffect(() => {
     axios
@@ -27,6 +29,14 @@ function App() {
       .then((res) => {
         console.log(res.data);
         setCategories(res.data.data);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(`${apiUrl}/api/v1/product?limit=100`)
+      .then((res) => {
+        console.log(res.data, "subcategories");
+        setSubCategories(res.data.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -39,7 +49,10 @@ function App() {
         {/* <CheckoutPage /> */}
         <Routes>
           <Route path="/" element={<Home categories={categories} />} />
-          <Route path="/productCategories" element={<ProductCategory />} />
+          <Route
+            path="/productCategories/:id"
+            element={<ProductCategory subCategories={subCategories} />}
+          />
           <Route path="/cartview" element={<CartView />} />
         </Routes>
       </BrowserRouter>

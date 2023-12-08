@@ -10,7 +10,10 @@ const Categories = ({ categories }) => {
         {/* Gird Item */}
         {categories?.map((item, index) => (
           <div key={index} class="d-flex flex-col justify-center items-center">
-            <Link to={`/productCategories`} class="text-black no-underline">
+            <Link
+              to={`/productCategories/${item._id}`}
+              class="text-black no-underline"
+            >
               <img
                 src={item.image}
                 alt=""
