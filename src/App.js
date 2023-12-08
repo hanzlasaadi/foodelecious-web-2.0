@@ -10,6 +10,8 @@ import CheckoutPage from "./Main_Components/CheckoutPage";
 import ProductCategory from "./Sub_Components/Page2/ProductCategory";
 import CartView from "./Sub_Components/Page4/CartView";
 import SelectOptionPage from "./Sub_Components/Page3/SelectOptionPage";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/selectOption" element={<SelectOptionPage />} />
           <Route path="/cartview" element={<CartView />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
       <Footer />

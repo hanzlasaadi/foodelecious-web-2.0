@@ -110,7 +110,9 @@ const Navigation_Bar = () => {
                   </span>
                 </Badge>
                 <h6 className="text-2xl md:block hidden text-secondary">
-                  <AiOutlineUser />
+                  <Link to="/login">
+                    <AiOutlineUser />
+                  </Link>
                 </h6>
               </Nav>
             </Navbar.Collapse>
