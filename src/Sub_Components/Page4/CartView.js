@@ -97,12 +97,14 @@ const CartView = () => {
             calculated at checkout
           </p>
 
-          <button
-            className=" w-[300px] w-96 border-orange-500 border-l border-r border-t border-b  px-2 py-[10px] text-white
+          <Link to="/checkout">
+            <button
+              className=" w-[300px] w-96 border-orange-500 border-l border-r border-t border-b  px-2 py-[10px] text-white
            bg-[#e57c35] mb-2 text-center font-bold text-[16px] cursor-pointer "
-          >
-            CHECKOUT
-          </button>
+            >
+              CHECKOUT
+            </button>
+          </Link>
         </div>
       </div>
       <Outlet />

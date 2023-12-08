@@ -5,11 +5,13 @@ import { Link, Outlet } from "react-router-dom";
 const ProductCategory = () => {
   const project = data;
   return (
-    <div class="mt-[5rem] ">
+    <div class="pt-[5rem] ">
       <p class="fs-5 mx-5 my-5">
         &lt;
         <span class="underline underline-offset-2 cursor-pointer pl-1 fs-5">
-          back
+          <Link to="/" class="text-black">
+            back
+          </Link>
         </span>
       </p>
 
@@ -33,7 +35,7 @@ const ProductCategory = () => {
             <p class="text-slate-600 text-center font-semibold no-underline">
               {item.desc}
             </p>
-            <Link to={`/cartview`}>
+            <Link to={`/selectOption`}>
               <button class="text-center font-semibold  uppercase px-5 py-2 text-white rounded-md bg-[#59A453]">
                 Order Now
               </button>
