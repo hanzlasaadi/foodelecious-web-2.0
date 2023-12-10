@@ -5,16 +5,16 @@ function SignUp() {
 
   return (
     <div class="pt-[5rem]">
-      <div id="app" className="app app-full-height app-without-header ">
+      <div id="app" className="app app-full-height app-without-header pb-5">
         <div class="register">
           <div class="register-content">
-            <form>
+            <form class="d-flex flex-col justify-center items-center">
               <h1 class="text-center">Sign Up</h1>
               {/* <p class="text-inverse text-opacity-50 text-center">
                 One Admin ID is all you need to access all the Admin services.
               </p> */}
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <label class="form-label">
                   Name <span class="text-danger">*</span>
                 </label>
@@ -25,7 +25,7 @@ function SignUp() {
                 />
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <label class="form-label">
                   Email Address <span class="text-danger">*</span>
                 </label>
@@ -36,7 +36,7 @@ function SignUp() {
                 />
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <label class="form-label">
                   Password <span class="text-danger">*</span>
                 </label>
@@ -46,7 +46,7 @@ function SignUp() {
                 />
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <label class="form-label">
                   Confirm Password <span class="text-danger">*</span>
                 </label>
@@ -56,7 +56,7 @@ function SignUp() {
                 />
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <label class="form-label">
                   Country <span class="text-danger">*</span>
                 </label>
@@ -65,7 +65,7 @@ function SignUp() {
                 </select>
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <label class="form-label">
                   Gender <span class="text-danger">*</span>
                 </label>
@@ -74,7 +74,7 @@ function SignUp() {
                 </select>
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <label class="form-label">
                   Date of Birth <span class="text-danger">*</span>
                 </label>
@@ -97,7 +97,7 @@ function SignUp() {
                 </div>
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <div class="form-check">
                   <input
                     class="form-check-input"
@@ -118,7 +118,7 @@ function SignUp() {
                 </div>
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3 w-25">
                 <button
                   type="submit"
                   class="btn btn-outline-theme btn-lg d-block w-100"

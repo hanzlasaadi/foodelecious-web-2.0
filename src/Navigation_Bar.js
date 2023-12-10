@@ -65,7 +65,7 @@ const Navigation_Bar = () => {
                   </span>{" "}
                 </Link>
                 <Link
-                  to="#"
+                  to="/"
                   className="no-underline text-dark hover:text-amber-500 relative"
                 >
                   MENU{" "}
@@ -77,7 +77,7 @@ const Navigation_Bar = () => {
                   </span>{" "}
                 </Link>
                 <Link
-                  to="#"
+                  to="/blogmain"
                   className="no-underline text-dark hover:text-amber-500 relative"
                 >
                   BLOG{" "}
@@ -89,7 +89,7 @@ const Navigation_Bar = () => {
                   </span>{" "}
                 </Link>
                 <Link
-                  to="#"
+                  to="/contactus"
                   className="no-underline text-dark hover:text-amber-500 relative"
                 >
                   CONTACT US{" "}
@@ -97,7 +97,10 @@ const Navigation_Bar = () => {
               </Nav>
               <Nav className=" gap-3">
                 <h6 className="text-2xl md:block hidden text-secondary">
-                  <IoIosSearch />
+                  <IoIosSearch
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  />
                 </h6>
                 <Badge
                   count="0"
@@ -106,11 +109,17 @@ const Navigation_Bar = () => {
                   className="md:block hidden"
                 >
                   <span className="text-2xl md:block hidden text-secondary">
-                    <LuShoppingCart />
+                    <Link
+                      to="/cartview"
+                      class="text-[#444444] hover:text-[#444444]"
+                    >
+                      {" "}
+                      <LuShoppingCart />
+                    </Link>
                   </span>
                 </Badge>
                 <h6 className="text-2xl md:block hidden text-secondary">
-                  <Link to="/login">
+                  <Link to="/login" class="text-[#444444] hover:text-[#444444]">
                     <AiOutlineUser />
                   </Link>
                 </h6>

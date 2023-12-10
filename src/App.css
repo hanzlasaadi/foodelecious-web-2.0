@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+input[type=radio] {
+  accent-color: #E57C37;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
 import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   return (
@@ -89,9 +89,11 @@ const Blog = () => {
                     Great food and reasonable prices. recommended to best time
                     with Great customer service...
                   </Card.Text>
-                  <Card.Text class="text-right text-slate-600 cursor-pointer">
-                    Read More &gt;&gt;
-                  </Card.Text>
+                  <Link to="/blogmain" class="no-underline">
+                    <Card.Text class="text-right text-slate-600 cursor-pointer">
+                      Read More &gt;&gt;
+                    </Card.Text>{" "}
+                  </Link>
                 </Card.Body>
               </Card>
             </Col>
@@ -110,9 +112,11 @@ const Blog = () => {
                     Great food and reasonable prices. recommended to best time
                     with Great customer service...
                   </Card.Text>
-                  <Card.Text class="text-right text-slate-600 cursor-pointer">
-                    Read More &gt;&gt;
-                  </Card.Text>
+                  <Link to="/blogmain" class="no-underline">
+                    <Card.Text class="text-right text-slate-600 cursor-pointer">
+                      Read More &gt;&gt;
+                    </Card.Text>
+                  </Link>
                 </Card.Body>
               </Card>
             </Col>
@@ -131,9 +135,11 @@ const Blog = () => {
                     Great food and reasonable prices. recommended to best time
                     with Great customer service...
                   </Card.Text>
-                  <Card.Text class="text-right text-slate-600 cursor-pointer">
-                    Read More &gt;&gt;
-                  </Card.Text>
+                  <Link to="/blogmain" class="no-underline">
+                    <Card.Text class="text-right text-slate-600 cursor-pointer">
+                      Read More &gt;&gt;
+                    </Card.Text>
+                  </Link>
                 </Card.Body>
               </Card>
             </Col>
@@ -142,7 +148,7 @@ const Blog = () => {
       </div>
 
       {/* contact */}
-      <Container fluid class="p-0 " >
+      <Container fluid class="p-0 ">
         <Row>
           {" "}
           <Col

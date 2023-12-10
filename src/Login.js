@@ -6,17 +6,17 @@ function Login() {
 
   return (
     <div class="pt-[5rem]">
-      <div id="app" className="app app-full-height app-without-header">
+      <div id="app" className="app app-full-height app-without-header pb-5">
         <div className="login">
           <div className="login-content">
-            <form>
+            <form class="d-flex flex-col justify-center items-center">
               <h1 className="text-center">Sign In</h1>
               <div className="text-white text-opacity-50 text-center mb-4">
                 <span style={{ color: "black" }}>
                   For your protection, please verify your identity.
                 </span>
               </div>
-              <div className="mb-3">
+              <div className="mb-3 w-25">
                 <label className="form-label">
                   Email Address <span className="text-danger">*</span>
                 </label>
@@ -28,7 +28,7 @@ function Login() {
                   placeholder="e.g xyz@gmail.com"
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-3 w-25">
                 <div className="d-flex">
                   <label className="form-label">
                     Password <span className="text-danger">*</span>
@@ -72,10 +72,7 @@ function Login() {
                   {" "}
                   Don't have an account yet?
                 </span>
-                <Link
-                  to="/signup"
-                  style={{ color: "#e75300" }}
-                >
+                <Link to="/signup" style={{ color: "#e75300" }}>
                   Sign up
                 </Link>
                 .
