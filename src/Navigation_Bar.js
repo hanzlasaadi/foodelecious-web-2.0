@@ -10,9 +10,8 @@ import { IoIosSearch } from "react-icons/io";
 
 const Navigation_Bar = () => {
   const [navSize, setnavSize] = useState("4rem");
-  const [topNav, setTopNav] = useState(40); 
+  const [topNav, setTopNav] = useState(40);
   const [navColor, setnavColor] = useState("transparent");
-
 
   const listenScrollEvent = () => {
     window.scrollY > 10 ? setnavSize("5rem") : setnavSize("4rem");
@@ -26,17 +25,16 @@ const Navigation_Bar = () => {
     };
   }, []);
 
-
   return (
     <div className="">
-    <nav
-          className="fixed w-100 mx-0 drop-shadow-md "
-          style={{
-            backgroundColor: navColor,
-            height: navSize,
-            zIndex: "2",
-          }}
-        >
+      <nav
+        className="fixed w-100 mx-0 drop-shadow-md "
+        style={{
+          backgroundColor: navColor,
+          height: navSize,
+          zIndex: "2",
+        }}
+      >
         <Navbar
           collapseOnSelect
           expand="lg"
@@ -55,7 +53,7 @@ const Navigation_Bar = () => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mx-auto text-sm gap-5 font-sans">
                 <Link
-                  to="#"
+                  to="/"
                   className="no-underline text-dark hover:text-amber-500 relative"
                 >
                   HOME{" "}
@@ -112,7 +110,9 @@ const Navigation_Bar = () => {
                   </span>
                 </Badge>
                 <h6 className="text-2xl md:block hidden text-secondary">
-                  <AiOutlineUser />
+                  <Link to="/login">
+                    <AiOutlineUser />
+                  </Link>
                 </h6>
               </Nav>
             </Navbar.Collapse>
