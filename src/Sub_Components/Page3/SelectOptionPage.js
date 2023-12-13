@@ -64,7 +64,7 @@ function SelectOptionPage({ currentOptions, currentItem, setCommodityList }) {
       // subCategory: subcategoryClicked._id,
       productPrice: stepsPrice,
       options: choosedOptions,
-      // unit: units,
+      unit: 1,
     };
     if (currentItem.steps) tempCommodity.stepsId = currentItem.steps;
 

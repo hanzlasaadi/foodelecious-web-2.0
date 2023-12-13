@@ -25,7 +25,9 @@ import { data } from "./data/data";
 import { data as data2 } from "./data/data2";
 
 function App() {
-  const [cart, setCart] = React.useState([]);
+  const [cart, setCart] = React.useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   const [categories, setCategories] = React.useState(data);
   const [subCategories, setSubCategories] = React.useState(data2);
   const [steps, setSteps] = React.useState([]);
