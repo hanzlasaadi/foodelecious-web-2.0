@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 
 const ProductCategory = ({
   subCategories,
@@ -41,6 +41,7 @@ const ProductCategory = ({
 };
 
 function SubCategory({ subCat, handleAddToCart, handleRemoveFromCart, cart }) {
+  const navigate = useNavigate();
   return (
     <>
       <span class="text-white rounded-r-full py-2 px-4 fs-5 my-5 font-semibold bg-gradient-to-r from-orange-500 to-orange-300">
@@ -79,7 +80,10 @@ function SubCategory({ subCat, handleAddToCart, handleRemoveFromCart, cart }) {
             ) : (
               <button
                 class="text-center font-semibold  uppercase px-5 py-2 text-white rounded-md bg-[#59A453]"
-                onClick={() => handleAddToCart(item)}
+                onClick={() => {
+                  handleAddToCart(item);
+                  navigate(`/selectOption/${item._id}`);
+                }}
               >
                 Add to Cart
               </button>
