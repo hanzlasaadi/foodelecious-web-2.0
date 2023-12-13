@@ -62,7 +62,7 @@ function SelectOptionPage({ currentOptions, currentItem, setCommodityList }) {
       barcode: "testBarcode",
       name: currentItem.name,
       // subCategory: subcategoryClicked._id,
-      productPrice: stepsPrice + currentItem.price,
+      productPrice: stepsPrice,
       options: choosedOptions,
       // unit: units,
     };
@@ -70,7 +70,13 @@ function SelectOptionPage({ currentOptions, currentItem, setCommodityList }) {
 
     setDisplayOptions(filterArray(tempCommodity.options));
     console.log("tempComm: ", tempCommodity);
-    setCommodityList((comm) => [...comm, tempCommodity]);
+    setCommodityList((comm) => {
+      localStorage.setItem(
+        "commodityList",
+        JSON.stringify([...comm, tempCommodity])
+      );
+      return [...comm, tempCommodity];
+    });
   };
 
   const filterArray = (inputArray) => {
@@ -133,7 +139,7 @@ function SelectOptionPage({ currentOptions, currentItem, setCommodityList }) {
                   variant="outline-secondary text-black"
                   id=""
                 >
-                  Add to Cart
+                  Choose these options
                 </Button>
 
                 {/* <div>
@@ -250,14 +256,24 @@ function SelectOptionPage({ currentOptions, currentItem, setCommodityList }) {
                 </div>
               </div>
 
-              <Link to="/cartview">
+              {/* <Link to="/cartview"> */}
+              <div className="d-flex w-100 gap-3 justify-content-center">
                 <button
-                  className="text-white w-64 p-2 ml-[69px]"
+                  onClick={() => navigate("/cartview")}
+                  className="text-white w-50 p-2 rounded"
                   style={{ backgroundColor: "#E57C35" }}
                 >
-                  Next
+                  Go to cart
                 </button>
-              </Link>
+                <button
+                  onClick={() => navigate(-1)}
+                  className="text-white w-50 p-2 rounded"
+                  style={{ backgroundColor: "#E57C35" }}
+                >
+                  Continue Browsing
+                </button>
+              </div>
+              {/* </Link> */}
             </Col>
           </Row>
           {/* <div className="grid  lg-grid-cols-8">
