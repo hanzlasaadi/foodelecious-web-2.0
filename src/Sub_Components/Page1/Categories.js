@@ -1,6 +1,7 @@
 import React from "react";
 import { data } from "../../data/data.js";
 import { Link, Outlet } from "react-router-dom";
+import { apiUrl } from "../../data/env.js";
 
 const Categories = ({ categories }) => {
   return (
@@ -15,7 +16,7 @@ const Categories = ({ categories }) => {
               class="text-black no-underline"
             >
               <img
-                src={item.image}
+                src={`${apiUrl}/images/categories/${item.image}`}
                 alt=""
                 class="w-[180px] h-[180px] border-orange-500 rounded-full border-2"
               />

@@ -1,5 +1,5 @@
 // import logo from "./logo.svg";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Home from "./Main_Components/Home";
@@ -25,9 +25,15 @@ import { data } from "./data/data";
 import { data as data2 } from "./data/data2";
 
 function App() {
-  const [cart, setCart] = React.useState([]);
+  const [cart, setCart] = React.useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   const [categories, setCategories] = React.useState(data);
   const [subCategories, setSubCategories] = React.useState(data2);
+  const [steps, setSteps] = React.useState([]);
+  const [filteredStep, setFilteredStep] = React.useState(null);
+  const [filteredCurrentItem, setFilteredCurrentItem] = React.useState(null);
+  const [commodityList, setCommodityList] = React.useState([]);
 
   React.useEffect(() => {
     axios
@@ -48,6 +54,14 @@ function App() {
       })
       .catch((err) => console.log(err));
     setCart(JSON.parse(localStorage.getItem("cart")) || []);
+
+    axios
+      .get(`${apiUrl}/api/v1/step?limit=100`)
+      .then((res) => {
+        console.log(res.data, "steps");
+        setSteps(res.data.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const handleAddToCart = (newItem) => {
@@ -58,6 +72,13 @@ function App() {
       setCart((c) => {
         localStorage.setItem("cart", JSON.stringify([...c, newItem]));
         return [...c, newItem];
+      });
+
+      // filter selected step
+      const [filterStep] = steps.filter((step) => step._id === newItem.steps);
+      setFilteredStep((e) => {
+        setFilteredCurrentItem(newItem);
+        return filterStep;
       });
     }
   };
@@ -89,11 +110,28 @@ function App() {
               />
             }
           />
-          <Route path="/cartview" element={<CartView />} />
-          <Route path="/selectOption" element={<SelectOptionPage />} />
-          <Route path="/cartview" element={<CartView />} />
+          <Route
+            path="/cartview"
+            element={
+              <CartView
+                cart={cart}
+                commodityList={commodityList}
+                handleRemoveFromCart={handleRemoveFromCart}
+              />
+            }
+          />
+          <Route
+            path="/selectOption/:itemId"
+            element={
+              <SelectOptionPage
+                currentOptions={filteredStep}
+                currentItem={filteredCurrentItem}
+                setCommodityList={setCommodityList}
+              />
+            }
+          />
           <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/contactus" element={<Contact />} />
           <Route path="/blogmain" element={<MainBlog />} />

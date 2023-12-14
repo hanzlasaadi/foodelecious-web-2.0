@@ -2,7 +2,19 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const CartView = () => {
+const CartView = ({ handleRemoveFromCart }) => {
+  const [units, setUnits] = React.useState(1);
+  const [cartList, setCartList] = React.useState(
+    JSON.parse(localStorage.getItem("commodityList")) || []
+  );
+
+  const removeCommodity = (name) => {
+    const newCommodity = cartList.filter((c) => c.name !== name);
+    setCartList((c) => {
+      localStorage.setItem("commodityList", newCommodity);
+      return newCommodity;
+    });
+  };
   return (
     <div class="pt-[5rem]">
       <div>
@@ -27,61 +39,84 @@ const CartView = () => {
         </div>
         <hr />
 
-        <div className="flex px-4 py-4">
-          {" "}
-          <div className="w-[148px] ">
-            <img
-              src="https://ik.imagekit.io/2nuimwatr/Ellipse%2027%20(9).png?updatedAt=1701960962339"
-              className="card-img-top "
-              alt=""
-            />{" "}
-          </div>
-          <div className=" grow-[2]">
-            <p className="text-[17px] font-medium px-6 pb-2 hover:underline cursor-pointer underline-offset-2 decoration-2">
-              PIZZA
-            </p>
-            <p className="text-gray-600 text-[15px] px-6 pb-2 ">₤14.99</p>
-            <p className="text-gray-600 text-[15px] px-6 pb-2">
-              Pizza with extra toppings
-            </p>
+        {cartList?.map((item) => {
+          return (
+            <div key={item._id} className="flex px-4 py-4">
+              <div className="w-[148px] ">
+                <img
+                  src="https://ik.imagekit.io/2nuimwatr/Ellipse%2027%20(9).png?updatedAt=1701960962339"
+                  className="card-img-top "
+                  alt=""
+                />{" "}
+              </div>
+              <div className=" grow-[2]">
+                <p className="text-[17px] font-medium px-6 pb-2 hover:underline cursor-pointer underline-offset-2 decoration-2">
+                  {item.name}
+                </p>
+                <p className="text-gray-600 text-[15px] px-6 pb-2 ">
+                  ₤{item.productPrice}
+                </p>
+                {/* <p className="text-gray-600 text-[15px] px-6 pb-2">
+                  Pizza with extra toppings
+                </p> */}
 
-            <div className="flex flex-wrap grow-[1]  relative items-baseline justify-start md:hidden block">
-              <p className="">
-                <button className="px-2 py-1 ml-9 border-b border-l  border-t border-black cursor-pointer text-gray-500">
-                  -
-                </button>
-                <button className=" px-2 py-1 border-b border-l border-r border-t border-black  font-bold">
-                  0
-                </button>
-                <button className="text-gray-500 px-2 py-1 border-b  border-r border-t border-black cursor-pointer">
-                  +
-                </button>
-              </p>
-              <p>
-                <RiDeleteBinLine className="text-[20px] mt-1 cursor-pointer ml-3 absolute top-0 left-[106px]" />
-              </p>
+                <div className="flex flex-wrap grow-[1]  relative items-baseline justify-start md:hidden block">
+                  <p className="">
+                    <button
+                      className="px-2 py-1 ml-9 border-b border-l  border-t border-black cursor-pointer text-gray-500"
+                      onClick={() => setUnits((u) => (u < 2 ? u : u - 1))}
+                    >
+                      -
+                    </button>
+                    <button className=" px-2 py-1 border-b border-l border-r border-t border-black  font-bold">
+                      {units}
+                    </button>
+                    <button
+                      className="text-gray-500 px-2 py-1 border-b  border-r border-t border-black cursor-pointer"
+                      onClick={() => setUnits((u) => u + 1)}
+                    >
+                      +
+                    </button>
+                  </p>
+                  <p>
+                    <RiDeleteBinLine
+                      className="text-[20px] mt-1 cursor-pointer ml-3 absolute top-0 left-[106px]"
+                      onClick={() => removeCommodity(item.name)}
+                    />
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap grow-[1]  relative items-baseline justify-start hidden md:block">
+                <p className="">
+                  <button
+                    className="px-2 py-1 ml-9 border-b border-l  border-t border-black cursor-pointer text-gray-500"
+                    onClick={() => setUnits((u) => (u < 2 ? u : u - 1))}
+                  >
+                    -
+                  </button>
+                  <button className=" px-2 py-1 border-b border-l border-r border-t border-black  font-bold">
+                    {units}
+                  </button>
+                  <button
+                    className="text-gray-500 px-2 py-1 border-b  border-r border-t border-black cursor-pointer"
+                    onClick={() => setUnits((u) => u + 1)}
+                  >
+                    +
+                  </button>
+                </p>
+                <p>
+                  <RiDeleteBinLine
+                    className="text-[20px] mt-1 cursor-pointer ml-3 absolute top-0 left-[106px]"
+                    onClick={() => removeCommodity(item.name)}
+                  />
+                </p>
+              </div>
+              <div className=" text-gray-600 text-[16px] hidden md:block">
+                <p>₤{Math.round(item.productPrice * units * 100) / 100}</p>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-wrap grow-[1]  relative items-baseline justify-start hidden md:block">
-            <p className="">
-              <button className="px-2 py-1 ml-9 border-b border-l  border-t border-black cursor-pointer text-gray-500">
-                -
-              </button>
-              <button className=" px-2 py-1 border-b border-l border-r border-t border-black  font-bold">
-                0
-              </button>
-              <button className="text-gray-500 px-2 py-1 border-b  border-r border-t border-black cursor-pointer">
-                +
-              </button>
-            </p>
-            <p>
-              <RiDeleteBinLine className="text-[20px] mt-1 cursor-pointer ml-3 absolute top-0 left-[106px]" />
-            </p>
-          </div>
-          <div className=" text-gray-600 text-[16px] hidden md:block">
-            <p>₤14.99</p>
-          </div>
-        </div>
+          );
+        })}
 
         <hr />
         <div className=" xs:text-center sm:text-center md:text-right px-4 py-6">

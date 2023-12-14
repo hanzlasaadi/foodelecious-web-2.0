@@ -76,12 +76,12 @@ function Left() {
                     />
                   </div>
                 </Badge>
-                {/* <p
+                <p
               className="absolute bg-gray-500 px-[8px] py-[2px] text-white left-[48px] bottom-[42px] z-10"
               style={{ borderRadius: "68px" }}
             >
               1
-            </p> */}
+            </p>
               </div>
 
               <div className="col pt-1 ml-20 ">

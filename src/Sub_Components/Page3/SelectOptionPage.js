@@ -1,11 +1,19 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
 import "../../App.css";
 
-function SelectOptionPage() {
+function SelectOptionPage({ currentOptions, currentItem, setCommodityList }) {
+  const navigate = useNavigate();
+  const { itemId } = useParams();
+  console.log(currentItem, "curItem");
+  console.log(currentOptions, "curOpts");
+  const [stepsPrice, setStepsPrice] = useState(currentItem.price);
+  const [displayOptions, setDisplayOptions] = useState([]);
+
   const [topping, setTopping] = useState("10'INCHES");
   const [cheese, setCheese] = useState("Yes");
   const [meat, setMeat] = useState("Yes");
@@ -18,6 +26,78 @@ function SelectOptionPage() {
   };
   const onOptionChange3 = (e) => {
     setMeat(e.target.value);
+  };
+
+  const getCheckedOptions = () => {
+    console.log(document.querySelectorAll('input[type="checkbox"]:checked'));
+  };
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    let arrMain = [];
+    let choosedOptions = [];
+    document
+      .querySelectorAll("input[type=checkbox]:checked")
+      .forEach((inp) => arrMain.push(inp.id));
+    currentOptions.stepsToChoose?.forEach((step) =>
+      step.options.forEach((opt) => {
+        if (arrMain.includes(opt._id)) {
+          choosedOptions.push({
+            stepName: step.stepName,
+            shortName: step.shortName,
+            type: opt.type,
+            price: opt.price,
+            selected: true,
+            optId: opt._id,
+          });
+        }
+      })
+    );
+    // console.log(choosedOptions);
+    // console.log(filteredProduct);
+    // console.log(stepsPrice);
+    // console.log(currentProducts._id);
+
+    const tempCommodity = {
+      barcode: "testBarcode",
+      name: currentItem.name,
+      // subCategory: subcategoryClicked._id,
+      productPrice: stepsPrice,
+      options: choosedOptions,
+      unit: 1,
+    };
+    if (currentItem.steps) tempCommodity.stepsId = currentItem.steps;
+
+    setDisplayOptions(filterArray(tempCommodity.options));
+    console.log("tempComm: ", tempCommodity);
+    setCommodityList((comm) => {
+      localStorage.setItem(
+        "commodityList",
+        JSON.stringify([...comm, tempCommodity])
+      );
+      return [...comm, tempCommodity];
+    });
+  };
+
+  const filterArray = (inputArray) => {
+    return inputArray.reduce((acc, current) => {
+      const existingItem = acc.find(
+        (item) => item.stepName === current.stepName
+      );
+
+      if (existingItem) {
+        // If the item already exists, add the type to its type array
+        existingItem.type.push(current.type);
+      } else {
+        // If the item doesn't exist, create a new object with a type array
+        acc.push({
+          ...current,
+          type: [current.type],
+        });
+      }
+
+      return acc;
+    }, []);
   };
 
   return (
@@ -34,106 +114,33 @@ function SelectOptionPage() {
               <div className="border-r-2 border-gray-400">
                 <div style={{ color: "#E57C35" }}>
                   <p>
-                    <FaArrowLeftLong />
+                    <FaArrowLeftLong onClick={() => navigate(-1)} />
                   </p>
                   <span>
                     <h4 className="mt-[-39px] ml-[47px] font-bold">
-                      Country Size Classic
+                      {currentItem.name || " "}
                     </h4>
                   </span>
                 </div>
-                <h6 className="mt-4 ml-[47px]  font-semibold ">
-                  Choose Size (any one)
-                </h6>
-                <div class="d-flex flex-col ml-[47px]   justify-center items-start">
-                  <div>
-                    <input
-                      type="radio"
-                      name="topping"
-                      value="7'INCHES"
-                      id="7'INCHES"
-                      checked={topping === "7'INCHES"}
-                      onChange={onOptionChange}
-                    />{" "}
-                    <label htmlFor="7'INCHES" class="px-2">
-                      7'INCHES
-                    </label>
-                    <label htmlFor="7'INCHES" class="px-5">
-                      £4.99
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="topping"
-                      value="10'INCHES"
-                      id="10'INCHES"
-                      checked={topping === "10'INCHES"}
-                      onChange={onOptionChange}
+                {currentOptions?.stepsToChoose.map((step) => {
+                  return (
+                    <Step
+                      key={step._id}
+                      stepToChoose={step}
+                      setStepsPrice={setStepsPrice}
+                      getCheckedOptions={getCheckedOptions}
+                      handleAddToCart={handleAddToCart}
                     />
-                    <label htmlFor="10'INCHES" class="px-2">
-                      10'INCHES
-                    </label>
-                    <label htmlFor="10'INCHES" class="px-5">
-                      £8.99
-                    </label>
-                  </div>
+                  );
+                })}
 
-                  <div>
-                    <input
-                      type="radio"
-                      name="topping"
-                      value="12'INCHES"
-                      id="12'INCHES"
-                      checked={topping === "12'INCHES"}
-                      onChange={onOptionChange}
-                    />
-                    <label htmlFor="12'INCHES" class="px-2">
-                      12'INCHES
-                    </label>
-                    <label htmlFor="12'INCHES" class="px-5">
-                      £10.99
-                    </label>
-                  </div>
-                </div>
-
-                <h6 className="mt-5 ml-[47px] font-semibold ">
-                  Would you like double cheese?
-                </h6>
-                <div class="d-flex flex-col ml-[47px]   justify-center items-start">
-                  <div>
-                    <input
-                      type="radio"
-                      name="cheese"
-                      value="Yes"
-                      id="Yes"
-                      checked={cheese === "Yes"}
-                      onChange={onOptionChange2}
-                    />{" "}
-                    <label htmlFor="Yes" class="px-2">
-                      Yes
-                    </label>
-                    <label htmlFor="Yes" class="px-5">
-                      £1.99
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="cheese"
-                      value="No"
-                      id="No"
-                      checked={cheese === "No"}
-                      onChange={onOptionChange2}
-                    />
-                    <label htmlFor="No" class="px-2">
-                      No
-                    </label>
-                    <label htmlFor="No" class="px-5">
-                      £8.99
-                    </label>
-                  </div>
-                </div>
+                <Button
+                  onClick={handleAddToCart}
+                  variant="outline-secondary text-black"
+                  id=""
+                >
+                  Choose these options
+                </Button>
 
                 {/* <div>
                   <div className=" ">
@@ -171,43 +178,6 @@ function SelectOptionPage() {
                   </div>
                 </div> */}
 
-                <h6 className="mt-5 ml-[47px] font-semibold ">
-                  Would you like double meat/veggies?
-                </h6>
-                <div class="d-flex flex-col ml-[47px]   justify-center items-start">
-                  <div>
-                    <input
-                      type="radio"
-                      name="meat"
-                      value="Yes"
-                      id="Yes"
-                      checked={meat === "Yes"}
-                      onChange={onOptionChange3}
-                    />
-                    <label htmlFor="Yes" class="px-2">
-                      Yes
-                    </label>
-                    <label htmlFor="Yes" class="px-5">
-                      £2.99
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="meat"
-                      value="No"
-                      id="No"
-                      checked={meat === "No"}
-                      onChange={onOptionChange3}
-                    />{" "}
-                    <label htmlFor="No" class="px-2">
-                      No
-                    </label>
-                    <label htmlFor="No" class="px-5">
-                      £8.99
-                    </label>
-                  </div>
-                </div>
                 {/* <div>
                   <div className=" ">
                     <div class=" flex ml-[38px] col gap-2 justify-start items-center ">
@@ -247,7 +217,19 @@ function SelectOptionPage() {
             </Col>
             <Col sm={12} md={4} lg={4}>
               <h4 class="text-center mt-5">TOTAL</h4>
-              <p>
+              {displayOptions?.map((opt) => {
+                return (
+                  <p>
+                    {opt.shortName}{" "}
+                    <strong>
+                      {opt.type.map((o) =>
+                        opt.type.length === 1 ? o + "" : o + ", "
+                      )}
+                    </strong>
+                  </p>
+                );
+              })}
+              {/* <p>
                 Selected topping <strong>{topping}</strong>
               </p>
               <p>
@@ -255,33 +237,43 @@ function SelectOptionPage() {
               </p>
               <p>
                 Selected Meat <strong>{meat}</strong>
-              </p>
+              </p> */}
               <div class="d-flex col mt-[150px] justify-between">
                 <div>
-                  <p className=" font-semibold"> SubTotal</p>
+                  {/* <p className=" font-semibold"> SubTotal</p> */}
                   <p className=" text-xl font-semibold"> Total</p>
                 </div>
 
                 <div>
-                  <p>£8.99</p>
+                  {/* <p>£8.99</p> */}
                   <p
                     className=" text-xl font-semibold"
                     style={{ color: "#E57C35" }}
                   >
                     {" "}
-                    £8.99
+                    £{Math.round(stepsPrice * 100) / 100}
                   </p>
                 </div>
               </div>
 
-              <Link to="/cartview">
+              {/* <Link to="/cartview"> */}
+              <div className="d-flex w-100 gap-3 justify-content-center">
                 <button
-                  className="text-white w-64 p-2 ml-[69px]"
+                  onClick={() => navigate("/cartview")}
+                  className="text-white w-50 p-2 rounded"
                   style={{ backgroundColor: "#E57C35" }}
                 >
-                  Next
+                  Go to cart
                 </button>
-              </Link>
+                <button
+                  onClick={() => navigate(-1)}
+                  className="text-white w-50 p-2 rounded"
+                  style={{ backgroundColor: "#E57C35" }}
+                >
+                  Continue Browsing
+                </button>
+              </div>
+              {/* </Link> */}
             </Col>
           </Row>
           {/* <div className="grid  lg-grid-cols-8">
@@ -360,6 +352,100 @@ function SelectOptionPage() {
         </Container>
       </div>
     </div>
+  );
+}
+
+function Step({ stepToChoose, setStepsPrice, handleAddToCart }) {
+  return (
+    <>
+      <h6 className="mt-4 ml-[47px]  font-semibold ">
+        {stepToChoose.stepName}
+      </h6>
+      <div class="d-flex flex-col ml-[47px]   justify-center items-start">
+        <Option
+          options={stepToChoose.options}
+          stepName={stepToChoose.stepName}
+          setStepsPrice={setStepsPrice}
+        />
+      </div>
+    </>
+  );
+}
+
+function Option({ options, stepName, setStepsPrice }) {
+  const [selectedCheckboxes, setSelectedCheckboxes] = React.useState([]);
+
+  const handleCheckboxChange = (value, stepNm, optPrice) => {
+    let max = 1;
+    if (stepNm.toLowerCase().includes("any"))
+      max = Number(stepNm.replace(/[^0-9]/g, ""));
+    // Check if the checkbox is already selected
+    if (selectedCheckboxes.includes(value)) {
+      // If selected, remove it from the array
+      setStepsPrice(
+        (stepsPrices) => Math.round((stepsPrices - optPrice) * 100) / 100
+      );
+      setSelectedCheckboxes(
+        selectedCheckboxes.filter((checkbox) => checkbox !== value)
+      );
+    } else {
+      // If not selected, check if the maximum limit is reached
+      if (selectedCheckboxes.length < max) {
+        // If not reached, add the checkbox to the array
+        setStepsPrice(
+          (stepsPrices) => Math.round((stepsPrices + optPrice) * 100) / 100
+        );
+        setSelectedCheckboxes([...selectedCheckboxes, value]);
+      }
+    }
+  };
+
+  return (
+    <>
+      {options.map((option) => {
+        return (
+          <div key={option._id}>
+            <input
+              type="checkbox"
+              name={option.type}
+              value={option._id}
+              id={option._id}
+              checked={selectedCheckboxes.includes(option._id)}
+              onChange={(e) => {
+                handleCheckboxChange(option._id, stepName, option.price);
+              }}
+            />{" "}
+            <label htmlFor="Yes" class="px-2">
+              {option.type}
+            </label>
+            <label htmlFor="Yes" class="px-5">
+              £{option.price}
+            </label>
+          </div>
+        );
+      })}
+    </>
+    //   <div className="option">
+    //   <input
+    //     type="checkbox"
+    //     id={option._id}
+    //     name={option.type}
+    //     value={option._id}
+    //     className="option-input"
+    //     checked={selectedCheckboxes.includes(option._id)}
+    //     onChange={() =>
+    //       handleCheckboxChange(option._id, stepName, option.price)
+    //     }
+    //   />
+    //   <label className="option-label" htmlFor={option._id}>
+    //     <span className="option-text" style={{ color: "black" }}>
+    //       {option.type}
+    //     </span>
+    //     <span className="option-price" style={{ color: "darkgrey" }}>
+    //       +{option.price}£
+    //     </span>
+    //   </label>
+    // </div>
   );
 }
 
