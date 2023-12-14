@@ -1,6 +1,10 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { RiDeleteBinLine } from "react-icons/ri";
+import axios from "axios";
+import { apiUrl } from "../../data/env";
+import { pubKey } from "../../data/stripe";
+import { loadStripe } from "@stripe/stripe-js";
 
 const CartView = ({ handleRemoveFromCart }) => {
   const [units, setUnits] = React.useState(1);
@@ -14,6 +18,28 @@ const CartView = ({ handleRemoveFromCart }) => {
       localStorage.setItem("commodityList", newCommodity);
       return newCommodity;
     });
+  };
+
+  const makePayment = async () => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const stripe = await loadStripe(pubKey);
+    const body = {
+      products: JSON.parse(localStorage.getItem("commodityList")),
+      // user: JSON.parse(localStorage.getItem('user'))
+    };
+    axios
+      .post(`${apiUrl}/api/v1/customer/order-online`, body, config)
+      .then((res) => {
+        console.log(res.data);
+        const result = stripe.redirectToCheckout({
+          sessionId: res.data.sessionId,
+        });
+        if (result.error) throw new Error("Stripe Payment Not Successful!");
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div class="pt-[5rem]">
@@ -132,14 +158,15 @@ const CartView = ({ handleRemoveFromCart }) => {
             calculated at checkout
           </p>
 
-          <Link to="/checkout">
-            <button
-              className=" w-[300px] w-96 border-orange-500 border-l border-r border-t border-b  px-2 py-[10px] text-white
+          {/* <Link to="/checkout"> */}
+          <button
+            className=" w-[300px] w-96 border-orange-500 border-l border-r border-t border-b  px-2 py-[10px] text-white
            bg-[#e57c35] mb-2 text-center font-bold text-[16px] cursor-pointer "
-            >
-              CHECKOUT
-            </button>
-          </Link>
+            onClick={makePayment}
+          >
+            CHECKOUT
+          </button>
+          {/* </Link> */}
         </div>
       </div>
       <Outlet />
