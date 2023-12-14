@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import { data } from "../../data/data.js";
+import { apiUrl } from "../../data/env.js";
 
 const ProductCategory = ({
   subCategories,
@@ -27,7 +28,7 @@ const ProductCategory = ({
       </p>
 
       {/* <<<<<<< HEAD */}
-      <span class="text-white rounded-r-full py-2 px-4 fs-5 my-5 font-semibold bg-gradient-to-r from-orange-500 to-orange-300">
+      {/* <span class="text-white rounded-r-full py-2 px-4 fs-5 my-5 font-semibold bg-gradient-to-r from-orange-500 to-orange-300">
         PIZZA
       </span>
 
@@ -57,7 +58,7 @@ const ProductCategory = ({
             </Link>
           </div>
         ))}
-      </div>
+      </div> */}
       {/* ======= */}
       {filteredSubcategories.map((filSubcat) => (
         <SubCategory
@@ -90,7 +91,11 @@ function SubCategory({ subCat, handleAddToCart, handleRemoveFromCart, cart }) {
             class="d-flex flex-col justify-center items-center"
           >
             <div class="relative">
-              <img src={item.image} alt="" class="w-[200px] h-[200px] " />
+              <img
+                src={`${apiUrl}/images/products/${item.image}`}
+                alt=""
+                class="w-[200px] h-[200px] "
+              />
               {item.price ? (
                 <p class="absolute top-[21px] right-[2px] text-white rounded-l-lg  fs-5 p-2 font-semibold bg-[#FE2B2B]">
                   {item.price}
