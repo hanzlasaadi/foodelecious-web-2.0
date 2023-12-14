@@ -54,7 +54,7 @@ function Left() {
         {open ? (
           <div className="bg-gray-100 border-b lg:hidden">
             {/* {cart?.map((p) => ( */}
-            {/* <div className="flex mb-4 pt-7  ml-[10%] mr-[10%]">
+            <div className="flex mb-4 pt-7  ml-[10%] mr-[10%]">
               <div className="relative ">
                 <Badge
                   count="0"
@@ -69,10 +69,10 @@ function Left() {
                       border: "1px solid #dddddd",
                     }}
                   >
-                 
                     <img
                       className="w-[50px] ml-[10px] mt-[10px] object-cover"
-                      src="https://ik.imagekit.io/p2slevyg1/png-transparent-chicken-burger-with-sliced-of-tomato-illustration-hamburger-fried-chicken-chicken-sandwich-fast-food-french-fries-hamburger-food-recipe-chicken-meat-thumbnail-removebg-preview.png?updatedAt=1701851984907" alt="img"
+                      src="https://ik.imagekit.io/p2slevyg1/png-transparent-chicken-burger-with-sliced-of-tomato-illustration-hamburger-fried-chicken-chicken-sandwich-fast-food-french-fries-hamburger-food-recipe-chicken-meat-thumbnail-removebg-preview.png?updatedAt=1701851984907"
+                      alt="img"
                     />
                   </div>
                 </Badge>
@@ -87,7 +87,7 @@ function Left() {
               <div className="col pt-1 ml-20 ">
                 <p className="font-bold text-[13px]">Chicken Burger</p>
                 <p className="font-light text-[12px] text-gray-600">
-                 Burger Description
+                  Burger Description
                 </p>
                 <p className="font-light text-[12px] text-gray-600">
                   option size
@@ -95,10 +95,10 @@ function Left() {
               </div>
               <div>
                 <p className="item-center font-bold text-[13px] mt-4">
-                £176.00
+                  £176.00
                 </p>
               </div>
-            </div> */}
+            </div>
 
             <hr className="mb-4  text-gray-500 ml-[10%] mr-[10%] hidden md:block" />
 
@@ -107,7 +107,7 @@ function Left() {
                 className="border-t border-l border-r border-b border-gray-300 py-3 pr-20  lg:grow-1 grow pl-3 text-gray-700  text-left "
                 placeholder="Gift card or discount code"
               />
-              <Button className="bg-gray-300 border-[0px] pt-3 grow-1 pb-3 px-3 hover:bg-gray-300 focus:bg-gray-300 font-bold my-1 ml-4">
+              <Button className="bg-[#E57C35] border-[0px] pt-3 grow-1 pb-3 px-3 hover:bg-gray-300 focus:bg-gray-300 font-bold my-1 ml-4">
                 Apply
               </Button>
             </div>
@@ -140,7 +140,7 @@ function Left() {
         ) : null}
 
         <div className="flex justify-items-basline items-center py-7  lg:ml-[10%] ml-[10%] mr-[10%]">
-          <span className="text-blue-500 cursor-pointer mx-1 text-[13px]">
+          <span className="text-orange-500 cursor-pointer mx-1 text-[13px]">
             Cart
           </span>
           <GrNext className="mx-1 text-gray-400 font-medium text-14px]" />{" "}
@@ -155,8 +155,10 @@ function Left() {
           <p className="text-[17px] ">Contact information</p>
           <p className="text-[14px]">
             Already have an account?
-            <span className="text-blue-500 cursor-pointer">
-              <Link to="/login">Log in</Link>
+            <span className="text-orange-500 cursor-pointer">
+              <Link to="/login" class="text-orange-500">
+                Log in
+              </Link>
             </span>
           </p>
         </div>
@@ -288,9 +290,9 @@ function Left() {
           </Row>
 
           <div className="my-5 relative flex justify-between item-center cursor-pointer">
-            <IoIosArrowBack className="absolute top-1 text-blue-500" />
+            <IoIosArrowBack className="absolute top-1 text-orange-500" />
             <p
-              className="text-blue-500 ml-4 pb-1 "
+              className="text-orange-500 ml-4 pb-1 "
               // onclick={() => {
               //   navigate("/viewCart");
               // }}
@@ -300,7 +302,7 @@ function Left() {
 
             <Button
               type="submit"
-              className=" bg-blue hover:bg-amber-500 text-[13px] py-3 px-4 font-bold"
+              className=" bg-[#e57c35] hover:bg-amber-500 text-[13px] py-3 px-4 font-bold"
               // onClick={() => "/payment"}
             >
               <Link to="#" className="text-white  no-underline">
@@ -312,7 +314,7 @@ function Left() {
 
         {/* <hr className="text-gray-400" />
 
-      <div className="flex text-blue-500">
+      <div className="flex text-orange-500">
         <p className="pr-4 py-3 text-[12px]">Refund policy</p>{" "}
         <p className="pr-4 py-3 text-[12px]">Shipping policy</p>{" "}
         <p className="pr-4 py-3 text-[12px]">Privacy policy</p>

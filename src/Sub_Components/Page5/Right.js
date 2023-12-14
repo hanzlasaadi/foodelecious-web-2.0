@@ -52,7 +52,7 @@ function Right() {
         />
         <Button
           type="submit"
-          className="bg-gray-300 border-[0px] pt-3 grow-1 pb-3 px-3 hover:bg-gray-300 focus:bg-gray-300 font-bold my-1 ml-4"
+          className="bg-[#E57C35] border-[0px] pt-3 grow-1 pb-3 px-3 hover:bg-gray-300 focus:bg-gray-300 font-bold my-1 ml-4"
         >
           Apply
         </Button>
