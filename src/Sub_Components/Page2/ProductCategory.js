@@ -21,18 +21,21 @@ const ProductCategory = () => {
 
       <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 my-5 mx-4 px-5">
         {project.map((item, index) => (
-          <div key={index} class="d-flex flex-col justify-center items-center">
+          <div
+            key={index}
+            class="d-flex flex-col justify-around items-center container "
+          >
             <div class="relative">
-              <img src={item.image} alt="" class="w-[200px] h-[200px] " />
+              <img src={item.image} alt="" class="w-[200px] h-[200px] image" />
               <p class="absolute top-[21px] right-[2px] text-white rounded-l-lg  fs-5 p-2 font-semibold bg-[#FE2B2B]">
                 {item.price}
               </p>
             </div>
 
-            <h6 class="text-center font-semibold w-[12rem] pt-2 uppercase hover:text-black no-underline">
+            <h6 class="text text-center font-semibold w-[12rem] pt-2 uppercase hover:text-black no-underline">
               {item.name}
             </h6>
-            <p class="text-slate-600 text-center font-semibold no-underline">
+            <p class="text text-slate-600 text-center px-4 font-semibold no-underline">
               {item.desc}
             </p>
             <Link to={`/selectOption`}>

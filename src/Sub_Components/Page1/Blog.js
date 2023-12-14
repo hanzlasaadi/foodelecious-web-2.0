@@ -166,9 +166,12 @@ const Blog = () => {
                 alt=""
                 class="mx-2"
               />
-              <b class="text-[#454545]">Booking Request</b>
+              <b class="text-[#454545]">
+                For Bookings & Other Queries, Call Us at:
+              </b>
             </div>
-            <h4 class="py-2 text-[#E57C35]">+011 4765 32568</h4>
+
+            <h4 class="py-2 text-[#E57C35]">01170000000</h4>
             <div class="d-flex justify-center items-center mx-2">
               <img
                 src="https://ik.imagekit.io/2nuimwatr/Component%201%20(1).png?updatedAt=1701851908697"
@@ -177,9 +180,7 @@ const Blog = () => {
               />
               <b class="text-[#454545]">Location</b>
             </div>
-            <p class="px-3 mx-3">
-              600 N Washington Ave Suite C203, Minneapolis, MN 55401
-            </p>
+            <p class="px-3 mx-3">80 EAST STREET BEDMINSTER, BS3 4EY</p>
             <div class="d-flex justify-center items-center mx-2">
               <img
                 src="https://ik.imagekit.io/2nuimwatr/Component%202.png?updatedAt=1701851908726"
@@ -195,7 +196,7 @@ const Blog = () => {
           <Col sm={12} md={6} lg={6} className="p-0 m-0" data-aos="fade-up">
             <iframe
               class="w-100 h-100"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d621.7208009586145!2d-2.5976303!3d51.4419388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48718c2afe0462c9%3A0x6a18b3aedfe9e621!2s80-82%20East%20St%2C%20Bedminster%2C%20Bristol%20BS3%204EY%2C%20UK!5e0!3m2!1sen!2s!4v1702567683578!5m2!1sen!2s"
               frameBorder={0}
               allowFullScreen
             />
